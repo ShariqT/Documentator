@@ -1,11 +1,48 @@
-<div>
-	<form>
-		<input type="text" />
-	</form>
-	
-</div>
-
-<div>
-
-
+<script>
+  	var BASE_URL = "<%=@baseUrl%>";
+  </script>
+<div ng-app="SearchApp" ng-controller="SearchCtrl">
+	<div class="row">
+		<div class="col-md-12" ng-if="RETURN_STATUS == 0" class="bg-danger">
+			{{errorMsg}}
+		</div>
+	</div>
+	<div class="row center-block">
+		<form ng-submit="submitQuery()" class="form">
+			<div class="row">
+				<div class="form-group col-xs-12 col-md-9">
+					<input type="text" class="form-control" id="query" ng-model="query" placeholder="Search..." />
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<input type="submit" value="Search" class="btn btn-primary" />
+				</div>
+			</div>
+		</form>	
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="results">
+				<p ng-if="items.length === 0">No results found!</p>
+				<div ng-repeat="item in items">
+					<dl class="dl-horizontal">
+						<dt>
+							<strong>Created by {{item.user.login}}</strong><br/>
+							<img ng-src="{{item.user.avatar_url}}" alt="user avatar for {{item.user.login}}" class="img-rounded" width="50px" height="50px">
+						</dt>
+						<dd>
+							<h4><a href="{{item.html_url}}">{{item.title}}</a></h4>
+							<strong>Repo name:</strong> {{item.repo_info.name}}<br />
+							<em>{{item.repo_info.description}}</em>
+						</dd>
+					</dl>
+				</div>
+				<nav>
+					<ul class="pagination">
+					    <li ng-repeat="p in pagination" ng-class="{active: current_page == p}"><a ng-click="showPage(p)" ><span ng-if="p == last_page"> >></span> <span ng-if="p !== last_page">{{p}}</span></a></li>
+					    
+ 					 </ul>
+				</nav>
+			</div>
+		</div>
+	</div>
 </div>
