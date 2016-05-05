@@ -11,13 +11,16 @@ class SearchController < ApplicationController
 			else
 				page=1
 			end
+			p params
 			response = RestClient.get("https://api.github.com/search/issues?q=documentation+in:title,body+state:open+language:" + query + "&page=" + page.to_s + "&access_token=" + session[:access_token])
 			dict_response = JSON.parse(response)
 			links = Hash.new
 			if response.headers[:link].present?
+				p response.headers[:link]
 				response.headers[:link].split(",").each do |l|
+					
 					matches = l.match(/page=(\d+).+; rel=\"(next|last|prev|first)\"/)
-					p matches
+					
 					links["#{matches[2]}"] = matches[1]
 				end
 			end

@@ -1,14 +1,15 @@
 <script>
   	var BASE_URL = "<%=@baseUrl%>";
   </script>
-<div ng-app="SearchApp" ng-controller="SearchCtrl">
+<div ng-app="SearchApp"> 
+	<div ng-controller="SearchCtrl">
 	<div class="row">
 		<div class="col-md-12" ng-if="RETURN_STATUS == 0" class="bg-danger">
 			{{errorMsg}}
 		</div>
 	</div>
 	<div class="row center-block">
-		<form ng-submit="submitQuery()" class="form">
+		<form ng-submit="submitQuery(true)" class="form">
 			<div class="row">
 				<div class="form-group col-xs-12 col-md-9">
 					<input type="text" class="form-control" id="query" ng-model="query" placeholder="Search..." />
@@ -38,11 +39,12 @@
 				</div>
 				<nav>
 					<ul class="pagination">
-					    <li ng-repeat="p in pagination" ng-class="{active: current_page == p}"><a ng-click="showPage(p)" ><span ng-if="p == last_page"> >></span> <span ng-if="p !== last_page">{{p}}</span></a></li>
+					    <li ng-repeat="p in pagination" ng-class="{active: current_page == p}"><a href="" ng-click="showPage(p)" ><span ng-if="p == last_page"> >></span> <span ng-if="p !== last_page">{{p}}</span></a></li>
 					    
  					 </ul>
 				</nav>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
