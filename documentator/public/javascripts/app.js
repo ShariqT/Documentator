@@ -1,7 +1,7 @@
 var app = (function(){
 	"use strict";
 	var app = angular.module("SearchApp",[]);
-	var SearchCtrl = function($scope, $http, $location){
+	var SearchCtrl = function($scope, $http, $location, $window){
 		console.log("this is the search controller");
 		$scope.errorMsg, $scope.RETURN_STATUS
 		$scope.items = null;
@@ -23,7 +23,7 @@ var app = (function(){
 
 
 		$scope.submitQuery = function(fromForm){
-			console.log($scope.query);
+			console.log(fromForm);
 			//formForm tells me that it was a new search so to set the page hash to 1
 			if(fromForm){
 				console.log("this is sent from the form");
@@ -46,7 +46,7 @@ var app = (function(){
 				data['page'] = $scope.page
 				$location.search('pg', $scope.page);
 			}
-
+			$scope.RETURN_STATUS = 2;
 			$http.post(BASE_URL + "/query", data).then(
 				function(res){onSuccess(res)}, function(err){onError(err)});
 
@@ -55,8 +55,9 @@ var app = (function(){
 		$scope.showPage = function(p){
 			$scope.page = p;
 			$scope.current_page = p;
-			
-			$scope.submitQuery(false);
+			$window.scrollTo(0,0);
+			$location.search('pg', p);
+			//$scope.submitQuery(false);
 		}
 
 
@@ -76,22 +77,37 @@ var app = (function(){
 				var i = parseInt(res.data.pagination.prev);
 				$scope.pagination.push(res.data.pagination.prev);
 				$scope.current_page = i + 1;
+				
 			}else{
 				var i = 1;
 				$scope.current_page = 1;
-			} 
-			var limit = i + 5;
-			$scope.pagination = [];
-			$scope.last_page = res.data.pagination.last;
-			
-
-			for(i; i < res.data.pagination.last && i < limit; i++){
 				
-				$scope.pagination.push(i);
+			} 
+			
+			$scope.pagination = [];
+			$scope.last_page = (res.data.pagination.last) ? res.data.pagination.last : $scope.current_page;
+			
+			if($scope.current_page !== $scope.last_page){
+				var limit = i + 5;
+				for(i; i < res.data.pagination.last && i < limit; i++){
+					
+					$scope.pagination.push(i);
+				}
+				$scope.pagination.push($scope.last_page);
 			}
-			$scope.pagination.push(res.data.pagination.last);
-			
-			
+			if($scope.current_page == $scope.last_page){
+
+				var limit = i - 5;
+				$scope.pagination.push(res.data.pagination.first);
+				for(i; i > limit; i--){
+					
+					$scope.pagination.push(i);
+				}
+				$scope.pagination.sort();
+				$scope.pagination.push($scope.last_page);
+			}
+			$window.scrollTo(0,0);
+			$scope.RETURN_STATUS = 1;
 
 		}
 
@@ -104,17 +120,12 @@ var app = (function(){
 		setUpController();
 		
 
-		$scope.$on('$locationChangeSuccess', function(evt, newUrl, oldUrl){
-			console.log("new url is " + newUrl);
-			console.log($location.search());
-			console.log("old url is " + oldUrl);
+		$scope.$on('$locationChangeStart', function(evt, newUrl, oldUrl){
 			if(newUrl !== oldUrl){
-			//$scope.submitQuery();
-				console.log("urls are the same!!!!");
+				
 				$location.replace();
-				setUpController();
+				setUpController(false);
 			}
-		
 		});
 	}
 

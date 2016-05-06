@@ -2,42 +2,42 @@
   	var BASE_URL = "<%=@baseUrl%>";
   </script>
 <div ng-app="SearchApp"> 
-	<div ng-controller="SearchCtrl">
+	<div ng-controller="SearchCtrl" class="center-block">
 	<div class="row">
 		<div class="col-md-12" ng-if="RETURN_STATUS == 0" class="bg-danger">
 			{{errorMsg}}
 		</div>
 	</div>
-	<div class="row center-block">
+	<div class="row">
 		<form ng-submit="submitQuery(true)" class="form">
 			<div class="row">
-				<div class="form-group col-xs-12 col-md-9">
+				<div class="form-group col-xs-10 col-md-10">
 					<input type="text" class="form-control" id="query" ng-model="query" placeholder="Search..." />
 				</div>
-				<div class="col-xs-12 col-md-3">
+				<div class="col-xs-2 col-md-2">
 					<input type="submit" value="Search" class="btn btn-primary" />
 				</div>
 			</div>
 		</form>	
 	</div>
-	<div class="row">
+	<div class="row" ng-show="RETURN_STATUS === 1">
 		<div class="col-md-12">
 			<div id="results">
 				<p ng-if="items.length === 0">No results found!</p>
-				<div ng-repeat="item in items">
-					<dl class="dl-horizontal">
-						<dt>
-							<strong>Created by {{item.user.login}}</strong><br/>
-							<img ng-src="{{item.user.avatar_url}}" alt="user avatar for {{item.user.login}}" class="img-rounded" width="50px" height="50px">
-						</dt>
-						<dd>
-							<h4><a href="{{item.html_url}}">{{item.title}}</a></h4>
-							<strong>Repo name:</strong> {{item.repo_info.name}}<br />
-							<em>{{item.repo_info.description}}</em>
-						</dd>
-					</dl>
+				<div class="media" ng-repeat="item in items">
+					<div class="media-left">
+						
+						<img ng-src="{{item.user.avatar_url}}" alt="user avatar for {{item.user.login}}" class="img-rounded" width="50px" height="50px">
+					</div>	
+					<div class="media-body">
+						<h4 class="media-heading"><a href="{{item.html_url}}">{{item.title}}</a></h4>
+						<strong>Repo name:</strong> {{item.repo_info.name}}<br />
+						<strong>Created by:</strong> {{item.user.login}}<br/>
+						<em>{{item.repo_info.description}}</em>
+
+					</div>
 				</div>
-				<nav>
+				<nav ng-show="pagination.length > 1">
 					<ul class="pagination">
 					    <li ng-repeat="p in pagination" ng-class="{active: current_page == p}"><a href="" ng-click="showPage(p)" ><span ng-if="p == last_page"> >></span> <span ng-if="p !== last_page">{{p}}</span></a></li>
 					    
@@ -46,5 +46,12 @@
 			</div>
 		</div>
 	</div>
-</div>
+	<div class="row" ng-show="RETURN_STATUS === 2">
+		<div class="progress" style="height:75px">
+			<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;font-size:x-large;padding-top:25px">
+				Loading...
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+	</div>
 </div>
