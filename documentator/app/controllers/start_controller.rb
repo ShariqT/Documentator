@@ -7,6 +7,13 @@ class StartController < ApplicationController
 		@access_token = nil
 	end
 	
+	def index
+		if session.key?(:user_id)
+			puts "user id exists" 
+			redirect_to "/search"
+			return
+		end
+	end
 
 	def login
 		code = params[:code]

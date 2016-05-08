@@ -66,8 +66,9 @@ var app = (function(){
 		function onSuccess(res){
 			console.log(res);
 			if(res.data.total_count === 0){
-				$scope.RETURN_STATUS = 0;
+				$scope.RETURN_STATUS = 1;
 				$scope.items = []
+				$scope.pagination = [];
 				return;
 			}
 

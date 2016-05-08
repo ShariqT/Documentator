@@ -9,21 +9,25 @@
 		</div>
 	</div>
 	<div class="row">
-		<form ng-submit="submitQuery(true)" class="form">
-			<div class="row">
-				<div class="form-group col-xs-10 col-md-10">
-					<input type="text" class="form-control" id="query" ng-model="query" placeholder="Search..." />
-				</div>
-				<div class="col-xs-2 col-md-2">
-					<input type="submit" value="Search" class="btn btn-primary" />
-				</div>
-			</div>
-		</form>	
+		<div class="col-md-12">
+		<h1><a href="/">Documentator</a></h1>
+		<p>Enter a language that you are familiar with and see what projects need your help.</p>
 	</div>
+	</div>
+	<form ng-submit="submitQuery(true)" class="form form-spacer">
+		<div class="row">
+			<div class="form-group col-xs-12 col-md-10">
+				<input type="text" class="form-control" id="query" ng-model="query" placeholder="Search..." />
+			</div>
+			<div class="col-xs-12 col-md-2">
+				<input type="submit" value="Search" class="btn btn-primary btn-block" />
+			</div>
+		</div>
+	</form>	
 	<div class="row" ng-show="RETURN_STATUS === 1">
 		<div class="col-md-12">
 			<div id="results">
-				<p ng-if="items.length === 0">No results found!</p>
+				<p ng-if="items.length === 0">There are no projects that use {{query}} that need documentation. <a href="https://github.com/new">Why don't you create one?</a></p>
 				<div class="media" ng-repeat="item in items">
 					<div class="media-left">
 						
