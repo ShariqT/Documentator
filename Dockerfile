@@ -1,4 +1,4 @@
-FROM rails:4.2.6
+FROM rails:4.2
 
 EXPOSE 3000
 
@@ -8,3 +8,4 @@ COPY documentator app
 
 WORKDIR /app
 
+ENTRYPOINT bundle install
