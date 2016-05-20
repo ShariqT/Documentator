@@ -8,7 +8,7 @@ COPY documentator app
 
 WORKDIR /app
 
-REMOVE Gemfile.lock
+RUN rm -f Gemfile.lock
 
 ENTRYPOINT bundle install --system
 
