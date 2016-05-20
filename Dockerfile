@@ -10,6 +10,8 @@ WORKDIR /app
 
 RUN rm -f Gemfile.lock
 
+RUN bundle update debugger
+
 ENTRYPOINT bundle install --system
 
 CMD bin/rails server -e production
