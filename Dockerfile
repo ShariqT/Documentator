@@ -8,6 +8,8 @@ COPY documentator app
 
 WORKDIR /app
 
-ENTRYPOINT bundle install
+REMOVE Gemfile.lock
+
+ENTRYPOINT bundle install --system
 
 CMD bin/rails server -e production
