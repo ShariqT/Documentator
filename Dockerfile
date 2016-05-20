@@ -20,4 +20,3 @@ RUN gem install binding_of_caller -v '0.7.2'
 
 RUN bundle install
 
-CMD bin/rails server -e production
