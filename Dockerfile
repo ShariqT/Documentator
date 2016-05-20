@@ -1,6 +1,6 @@
 FROM rails:4.2
 
-EXPOSE 3000
+EXPOSE 8002
 
 RUN mkdir app
 
@@ -24,8 +24,8 @@ RUN bundle install
 
 RUN chmod u+x ./bin/rails
 
-ENV SECRET_KEY_BASE = ./bin/rake secret
+ENV SECRET_KEY_BASE nsdoseidn43950rnsdkfdlsdndo30204nfkslf9506tnde3049
 
-CMD ./bin/rails server -e production
+CMD ./bin/rails server -e production -p 80002
 
 
