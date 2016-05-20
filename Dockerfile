@@ -18,7 +18,7 @@ RUN gem install sqlite3 -v '1.3.11'
 
 RUN gem install binding_of_caller -v '0.7.2'
 
-RUN bundle install
+RUN bundle install --system
 
 RUN chmod u+x ./bin/rails
 
