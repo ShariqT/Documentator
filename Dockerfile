@@ -16,6 +16,6 @@ RUN gem install byebug -v '8.2.4'
 
 RUN gem install sqlite3 -v '1.3.11'
 
-RUN bundle install --system
+RUN bundle install
 
 CMD bin/rails server -e production
