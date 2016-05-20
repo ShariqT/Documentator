@@ -9,3 +9,5 @@ COPY documentator app
 WORKDIR /app
 
 ENTRYPOINT bundle install
+
+CMD bin/rails server -e production
