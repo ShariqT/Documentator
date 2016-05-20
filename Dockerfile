@@ -16,6 +16,8 @@ RUN gem install byebug -v '8.2.4'
 
 RUN gem install sqlite3 -v '1.3.11'
 
+RUN gem install binding_of_caller -v '0.7.2'
+
 RUN bundle install
 
 CMD bin/rails server -e production
