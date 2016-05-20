@@ -8,4 +8,3 @@ COPY documentator app
 
 WORKDIR /app
 
-CMD ["bin/rails", "s", "-e production"]  
