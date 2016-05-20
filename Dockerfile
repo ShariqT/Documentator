@@ -1,4 +1,4 @@
-FROM rails:4.26
+FROM rails:4.2.6
 
 EXPOSE 3000
 
