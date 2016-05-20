@@ -20,7 +20,7 @@ RUN gem install binding_of_caller -v '0.7.2'
 
 RUN gem install unf_ext -v '0.0.7.2'
 
-RUN bundle install --system
+RUN bundle install
 
 RUN chmod u+x ./bin/rails
 
