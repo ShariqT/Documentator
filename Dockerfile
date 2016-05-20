@@ -8,10 +8,8 @@ COPY documentator app
 
 WORKDIR /app
 
-RUN rm -f Gemfile.lock
+RUN gem install byebug -v '9.0.4'
 
-RUN bundle update debugger
-
-ENTRYPOINT bundle install --system
+RUN bundle install --system
 
 CMD bin/rails server -e production
