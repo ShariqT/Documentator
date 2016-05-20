@@ -6,6 +6,6 @@ RUN mkdir app
 
 COPY documentator app
 
-WORKDIR /app/documentator
+WORKDIR /app
 
 CMD ["bin/rails", "s", "-e production"]  
