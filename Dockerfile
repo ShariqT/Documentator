@@ -24,5 +24,8 @@ RUN bundle install --system
 
 RUN chmod u+x ./bin/rails
 
+ENV SECRET_KEY_BASE = ./bin/rake secret
+
+CMD ./bin/rails server -e production
 
 
