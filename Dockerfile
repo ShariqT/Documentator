@@ -26,6 +26,6 @@ RUN chmod u+x ./bin/rails
 
 ENV SECRET_KEY_BASE nsdoseidn43950rnsdkfdlsdndo30204nfkslf9506tnde3049
 
-CMD ./bin/rails server -e production -p 80002
+CMD ./bin/rails server -e production -p 8002
 
 
