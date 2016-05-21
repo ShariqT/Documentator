@@ -32,6 +32,8 @@ ENV SECRET_KEY_BASE nsodnsoineoin0203432320n2ewrndsfndsf2340s33i32i3ij3ns9
 
 ENV RAILS_SERVE_STATIC_FILES true
 
+ENV BASE_URL http://documentator.shariqtorres.name
+
 #RUN bundle exec rake RAILS_ENV=production
 
 CMD bundle exec unicorn -c config/unicorn.rb

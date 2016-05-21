@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 	
 	def index
-		@baseUrl = "http://localhost:3000"
+		@baseUrl = ENV['BASE_URL']
 	end
 
 	def query
