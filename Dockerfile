@@ -33,7 +33,7 @@ ENV SECRET_KEY_BASE nsodnsoineoin0203432320n2ewrndsfndsf2340s33i32i3ij3ns9
 ENV RAILS_ENV production
 
 # Provide dummy data to Rails so it can pre-compile assets.
-#RUN bundle exec rake RAILS_ENV=production
+RUN bundle exec rake assets:precompile
 
 CMD bundle exec unicorn -c config/unicorn.rb
 
