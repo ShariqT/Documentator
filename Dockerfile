@@ -22,10 +22,11 @@ RUN gem install unf_ext -v '0.0.7.2'
 
 RUN bundle install
 
-RUN chmod u+x ./bin/rails
+ENV SECRET_KEY_BASE ./bin/rake secret
 
-ENV SECRET_KEY_BASE nsdoseidn43950rnsdkfdlsdndo30204nfkslf9506tnde3049
+# Provide dummy data to Rails so it can pre-compile assets.
+RUN bundle exec rake RAILS_ENV=production SECRET_KEY_BASE=$SECRET_KEY_BASE
 
-CMD ./bin/rails server -e production -p 8002
+CMD bundle exec unicorn -c config/unicorn.rb
 
 
