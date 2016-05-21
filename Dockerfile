@@ -22,6 +22,8 @@ RUN gem install unf_ext -v '0.0.7.2'
 
 RUN gem install kgio -v '2.10.0'
 
+RUN gem install raindrops -v '0.16.0'
+
 RUN bundle install
 
 ENV SECRET_KEY_BASE ./bin/rake secret
