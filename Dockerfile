@@ -28,7 +28,7 @@ RUN gem install unicorn -v '5.1.0'
 
 RUN bundle install
 
-ENV SECRET_KEY_BASE ./bin/rake secret
+ENV SECRET_KEY_BASE nsodnsoineoin0203432320n2ewrndsfndsf2340s33i32i3ij3ns9
 
 # Provide dummy data to Rails so it can pre-compile assets.
 RUN bundle exec rake RAILS_ENV=production SECRET_KEY_BASE=$SECRET_KEY_BASE
