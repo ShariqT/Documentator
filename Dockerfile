@@ -31,7 +31,7 @@ RUN bundle install
 ENV SECRET_KEY_BASE nsodnsoineoin0203432320n2ewrndsfndsf2340s33i32i3ij3ns9
 
 # Provide dummy data to Rails so it can pre-compile assets.
-RUN bundle exec rake RAILS_ENV=production SECRET_KEY_BASE=$SECRET_KEY_BASE
+RUN bundle exec rake RAILS_ENV=production SECRET_KEY_BASE="$SECRET_KEY_BASE"
 
 CMD bundle exec unicorn -c config/unicorn.rb
 
