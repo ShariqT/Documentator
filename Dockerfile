@@ -34,6 +34,8 @@ ENV RAILS_ENV production
 
 ENV RAILS_SERVE_STATIC_FILES true
 
+RUN bundle exec rake
+
 CMD bundle exec unicorn -c config/unicorn.rb
 
 
