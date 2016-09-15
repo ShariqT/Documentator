@@ -34,6 +34,8 @@ ENV RAILS_SERVE_STATIC_FILES true
 
 ENV BASE_URL http://documentator.shariqtorres.name
 
+ENV RAILS_ENV production
+
 #RUN bundle exec rake RAILS_ENV=production
 
 CMD bundle exec unicorn -c config/unicorn.rb
