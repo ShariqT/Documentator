@@ -1,4 +1,4 @@
-FROM rails:4.2
+FROM rails:5
 
 EXPOSE 8002
 
